@@ -1,6 +1,7 @@
 # Xcode
 .DS_Store
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 */build/*
 
@@ -38,6 +39,8 @@ Podfile.lock
 /Pods
 
 =======
+=======
+>>>>>>> ce039364cbe0bd5418586aef92b5e9db6f1e808a
 build/
 *.pbxuser
 !default.pbxuser
@@ -54,4 +57,7 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+<<<<<<< HEAD
+>>>>>>> ce039364cbe0bd5418586aef92b5e9db6f1e808a
+=======
 >>>>>>> ce039364cbe0bd5418586aef92b5e9db6f1e808a
