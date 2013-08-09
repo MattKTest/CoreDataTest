@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Asset" representedClassName="Asset" syncable="YES">
+        <attribute name="assetFileTypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="baseSixtyFourId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fileSize" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hashId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="literatureNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="metadataHash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="renditionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="revisionDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortDate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="thumbnail128" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assetClassifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AssetClassification" inverseName="asset" inverseEntity="AssetClassification" syncable="YES"/>
+        <relationship name="assetPresenters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AssetPresenter" inverseName="asset" inverseEntity="AssetPresenter" syncable="YES"/>
+        <relationship name="assetTypeAssets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AssetTypeAsset" inverseName="asset" inverseEntity="AssetTypeAsset" syncable="YES"/>
+        <relationship name="taxas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Taxa" inverseName="assets" inverseEntity="Taxa" syncable="YES"/>
+    </entity>
+    <entity name="AssetClassification" representedClassName="AssetClassification" syncable="YES">
+        <attribute name="assetId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taxonId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="asset" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="assetClassifications" inverseEntity="Asset" syncable="YES"/>
+        <relationship name="taxa" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Taxa" inverseName="assetClassifications" inverseEntity="Taxa" syncable="YES"/>
+    </entity>
+    <entity name="AssetPresenter" representedClassName="AssetPresenter" syncable="YES">
+        <attribute name="assetId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="presenterId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="asset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="assetPresenters" inverseEntity="Asset" syncable="YES"/>
+        <relationship name="presenter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Presenter" inverseName="assetPresenters" inverseEntity="Presenter" syncable="YES"/>
+    </entity>
+    <entity name="AssetType" representedClassName="AssetType" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assetTypeAssets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AssetTypeAsset" inverseName="assetType" inverseEntity="AssetTypeAsset" syncable="YES"/>
+    </entity>
+    <entity name="AssetTypeAsset" representedClassName="AssetTypeAsset" syncable="YES">
+        <attribute name="assetId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="assetTypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="asset" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="assetTypeAssets" inverseEntity="Asset" syncable="YES"/>
+        <relationship name="assetType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AssetType" inverseName="assetTypeAssets" inverseEntity="AssetType" syncable="YES"/>
+    </entity>
+    <entity name="Closure" representedClassName="Closure" syncable="YES">
+        <attribute name="ancestor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descendant" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="taxaAncestor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Taxa" inverseName="closureAncestors" inverseEntity="Taxa" syncable="YES"/>
+        <relationship name="taxaDescendant" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Taxa" inverseName="closureDescendants" inverseEntity="Taxa" syncable="YES"/>
+    </entity>
+    <entity name="Country" representedClassName="Country" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Locale" representedClassName="Locale" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Presenter" representedClassName="Presenter" syncable="YES">
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prefix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suffix" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assetPresenters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AssetPresenter" inverseName="presenter" inverseEntity="AssetPresenter" syncable="YES"/>
+    </entity>
+    <entity name="Taxa" representedClassName="Taxa" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taxonGroupId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assetClassifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AssetClassification" inverseName="taxa" inverseEntity="AssetClassification" syncable="YES"/>
+        <relationship name="assets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Asset" inverseName="taxas" inverseEntity="Asset" syncable="YES"/>
+        <relationship name="closureAncestors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Closure" inverseName="taxaAncestor" inverseEntity="Closure" syncable="YES"/>
+        <relationship name="closureDescendants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Closure" inverseName="taxaDescendant" inverseEntity="Closure" syncable="YES"/>
+    </entity>
+    <entity name="TaxonGroup" representedClassName="TaxonGroup" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Asset" positionX="0" positionY="0" width="128" height="343"/>
+        <element name="AssetClassification" positionX="-200" positionY="18" width="128" height="103"/>
+        <element name="AssetPresenter" positionX="178" positionY="45" width="128" height="103"/>
+        <element name="AssetType" positionX="367" positionY="438" width="128" height="118"/>
+        <element name="AssetTypeAsset" positionX="214" positionY="291" width="128" height="103"/>
+        <element name="Closure" positionX="-540" positionY="36" width="128" height="118"/>
+        <element name="Country" positionX="-74" positionY="483" width="128" height="75"/>
+        <element name="Locale" positionX="-254" positionY="486" width="128" height="75"/>
+        <element name="Presenter" positionX="349" positionY="81" width="128" height="133"/>
+        <element name="Taxa" positionX="-371" positionY="135" width="128" height="148"/>
+        <element name="TaxonGroup" positionX="88" positionY="483" width="128" height="75"/>
+    </elements>
+</model>
